@@ -1,6 +1,6 @@
 {
   "name": "@adamcjm/dsh-memo",
-  "version": "0.3.2-ymfd.3",
+  "version": "0.3.3-ymfd.4",
   "description": "Drop-in fork of @adamcjm/dsh-memo adding Markdown rendering, a notebook (long-form notes) tab, long-text folding and touch-friendly drag.",
   "author": "adamcjm (upstream) / ymf2317-tech (fork)",
   "license": "MIT",
