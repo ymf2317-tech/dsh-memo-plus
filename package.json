@@ -1,0 +1,61 @@
+{
+  "name": "@adamcjm/dsh-memo",
+  "version": "0.3.0-ymfd.1",
+  "description": "DSH 备忘录（ymf2317-tech 自用 fork of @adamcjm/dsh-memo 0.2.11）：Markdown 渲染、可折叠输入区、触屏长按拖拽",
+  "author": "adamcjm (upstream) / ymf2317-tech (fork)",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "plugin",
+    "memo",
+    "notes",
+    "sqlite"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamcjm/dsh-memo.git"
+  },
+  "homepage": "https://github.com/adamcjm/dsh-memo#readme",
+  "bugs": {
+    "url": "https://github.com/adamcjm/dsh-memo/issues"
+  },
+  "_fork": {
+    "of": "@adamcjm/dsh-memo@0.2.11",
+    "by": "ymf2317-tech",
+    "base": "0.2.11",
+    "reason": "上游不渲染 Markdown、列表可视区被输入区/标签区挤占、触屏一滑就被 SortableJS 抓成拖拽",
+    "changes": [
+      "client: marked 渲染 Markdown 正文（表格/代码/标题/列表/引用），marked 由 host 半侧 /memo/api/vendor/marked.js 提供，复用 profile 里已有的 marked 18.1.3",
+      "client: 输入区默认一行、聚焦展开；标签区可收起；筛选单行横滚；窄屏头部压缩；列表吃满剩余高度",
+      "client: SortableJS 改成长按 220ms 才开始拖拽（delay + delayOnTouchOnly），触屏恢复原生上下滑动"
+    ]
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    },
+    "manifestVersion": 1
+  }
+}
