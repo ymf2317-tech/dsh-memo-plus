@@ -1,6 +1,6 @@
 {
   "name": "@adamcjm/dsh-memo",
-  "version": "0.3.0-ymfd.1",
+  "version": "0.3.1-ymfd.2",
   "description": "Drop-in fork of @adamcjm/dsh-memo adding Markdown rendering, a notebook (long-form notes) tab, long-text folding and touch-friendly drag.",
   "author": "adamcjm (upstream) / ymf2317-tech (fork)",
   "license": "MIT",
@@ -16,7 +16,8 @@
     "lib",
     "cordis.patch.yml",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "keywords": [
     "deepseek-harness",
