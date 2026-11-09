@@ -1,8 +1,19 @@
-# dsh-memo-plus（ymf2317-tech 自用 fork）
+# dsh-memo-plus
 
-> fork of [`@adamcjm/dsh-memo@0.2.11`](https://github.com/adamcjm/dsh-memo) · MIT
-> 落盘位置：`D:\dsh-workspace\packages\dsh-memo-plus`
-> 包名与面板 id **保持 `@adamcjm/dsh-memo` / `memo` 不变**，这样 bundle patch、面板 key、数据目录（`~/.dsh/memo`）、同步仓库全都不动，只换代码。
+> DeepSeek Harness 备忘录插件的自用 fork：[`@adamcjm/dsh-memo@0.2.11`](https://github.com/adamcjm/dsh-memo) · MIT
+> **包名与面板 id 保持 `@adamcjm/dsh-memo` / `memo` 不变** —— 它是 drop-in 替换，不是另一个插件。
+
+上游 0.2.11 是个称职的随手记，但对手机和长文不友好。这个 fork 只做三件事：**把 Markdown 渲染出来、把屏幕还给人、让手指能滚动**，再补一个「笔记本」区放长文档。
+
+| 能力 | 上游 0.2.11 | 本 fork |
+|---|---|---|
+| 正文 | `white-space:pre-wrap` 纯文本 | **Markdown 渲染**（标题/表格/代码/引用/列表） |
+| 长文 | 一条占满整屏 | **折叠 9 行 + 展开全文** |
+| 手机布局 | 输入区 80px + 标签两三行 + 筛选换行 | 输入区单行聚焦展开、标签收起、筛选单行横滚 |
+| 触屏 | 一滑就变拖拽 | **长按 220ms 才拖**，正常上下滚动 |
+| 长文档 | 只能塞进备忘列表 | **「笔记」区**（正文首行 `# 标题` 即名称，全屏阅读） |
+
+本机落盘位置：`D:\dsh-workspace\packages\dsh-memo-plus`
 
 ## 为什么 fork
 
@@ -71,12 +82,27 @@ fallbackTolerance: 4,
 
 写 `# 标题` 时井号后必须带空格，否则会被 `stripTags` 当标签吃掉。
 
-## 安装形态
+## 安装
 
-`C:\Users\Administrator\.dsh\profiles\web\node_modules\@adamcjm\dsh-memo` 是一个 **junction**，指向本目录；
-profile `package.json` 里登记为 `"@adamcjm/dsh-memo": "link:D:/dsh-workspace/packages/dsh-memo-plus"`。
+**A. link 到本目录（改代码即时生效，推荐自用）**
 
-改完 `lib/client.js` 后刷新浏览器即可；改 `lib/index.js`（host 半侧）需要重启 dsh web。
+```powershell
+git clone https://github.com/ymf2317-tech/dsh-memo-plus.git
+```
+
+然后在你的 DSH profile（`~/.dsh/profiles/<profile>`）里：
+
+1. `package.json` 的 `dependencies` 加一条：`"@adamcjm/dsh-memo": "link:<绝对路径>/dsh-memo-plus"`
+2. 让 `<profile>/node_modules/@adamcjm/dsh-memo` 指向该目录（Windows 用 `New-Item -ItemType Junction`，其他平台用 `ln -s`）
+3. 重启 DSH Web
+
+**B. 覆盖上游目录（不想多一个目录时）**
+
+把本仓库的 `lib/`、`cordis.patch.yml`、`package.json` 覆盖进已安装的 `node_modules/@adamcjm/dsh-memo`。因为包名与面板 id 都保持不变，DSH 不会把它当成新插件，也不会新建数据目录。
+
+改 `lib/client.js` 后刷新浏览器即生效；改 `lib/index.js`（host 半侧，含 `/memo/vendor/marked.js` 路由）必须重启 DSH Web。
+
+> **包名仍叫 `@adamcjm/dsh-memo` 是刻意的**：DSH 的 bundle patch 与面板 key 都按包名解析，改名等于多出一个面板和一整套数据。代价是这个 fork **不能直接 `npm publish`**（那是别人的 scope）；将来要发 npm，包名得改成 `dsh-memo-plus`，并同步 `package.json` 与 `cordis.patch.yml` 里的 `name`。
 
 ## 回滚
 

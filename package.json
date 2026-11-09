@@ -1,7 +1,7 @@
 {
   "name": "@adamcjm/dsh-memo",
   "version": "0.3.0-ymfd.1",
-  "description": "DSH 备忘录（ymf2317-tech 自用 fork of @adamcjm/dsh-memo 0.2.11）：Markdown 渲染、可折叠输入区、触屏长按拖拽",
+  "description": "Drop-in fork of @adamcjm/dsh-memo adding Markdown rendering, a notebook (long-form notes) tab, long-text folding and touch-friendly drag.",
   "author": "adamcjm (upstream) / ymf2317-tech (fork)",
   "license": "MIT",
   "type": "module",
@@ -21,9 +21,11 @@
   "keywords": [
     "deepseek-harness",
     "dsh",
-    "plugin",
+    "dsh-plugin",
+    "dsh-memo",
     "memo",
     "notes",
+    "markdown",
     "sqlite"
   ],
   "engines": {
@@ -31,11 +33,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adamcjm/dsh-memo.git"
+    "url": "git+https://github.com/ymf2317-tech/dsh-memo-plus.git"
   },
-  "homepage": "https://github.com/adamcjm/dsh-memo#readme",
+  "homepage": "https://github.com/ymf2317-tech/dsh-memo-plus#readme",
   "bugs": {
-    "url": "https://github.com/adamcjm/dsh-memo/issues"
+    "url": "https://github.com/ymf2317-tech/dsh-memo-plus/issues"
   },
   "_fork": {
     "of": "@adamcjm/dsh-memo@0.2.11",
