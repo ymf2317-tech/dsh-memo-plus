@@ -1,5 +1,8 @@
 # dsh-memo-plus
 
+[![npm](https://img.shields.io/npm/v/dsh-memo-plus.svg)](https://www.npmjs.com/package/dsh-memo-plus)
+[![license](https://img.shields.io/npm/l/dsh-memo-plus.svg)](./LICENSE)
+
 > DeepSeek Harness 备忘录插件的独立 fork：[`@adamcjm/dsh-memo@0.2.11`](https://github.com/adamcjm/dsh-memo) · MIT
 > 包名 `dsh-memo-plus`，面板 id 仍是 `memo`。
 
