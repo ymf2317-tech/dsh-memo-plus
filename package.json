@@ -1,7 +1,7 @@
 {
-  "name": "@adamcjm/dsh-memo",
+  "name": "dsh-memo-plus",
   "version": "0.3.3-ymfd.4",
-  "description": "Drop-in fork of @adamcjm/dsh-memo adding Markdown rendering, a notebook (long-form notes) tab, long-text folding and touch-friendly drag.",
+  "description": "DSH memo plugin: Markdown rendering, a notebook tab for long-form notes, long-text folding and touch-friendly memo list. Independent fork of @adamcjm/dsh-memo.",
   "author": "adamcjm (upstream) / ymf2317-tech (fork)",
   "license": "MIT",
   "type": "module",
@@ -49,7 +49,8 @@
       "client: marked 渲染 Markdown 正文（表格/代码/标题/列表/引用），marked 由 host 半侧 /memo/api/vendor/marked.js 提供，复用 profile 里已有的 marked 18.1.3",
       "client: 输入区默认一行、聚焦展开；标签区可收起；筛选单行横滚；窄屏头部压缩；列表吃满剩余高度",
       "client: SortableJS 改成长按 220ms 才开始拖拽（delay + delayOnTouchOnly），触屏恢复原生上下滑动"
-    ]
+    ],
+    "renamedFrom": "@adamcjm/dsh-memo"
   },
   "dsh": {
     "bundle": {

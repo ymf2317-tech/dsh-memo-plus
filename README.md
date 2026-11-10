@@ -1,7 +1,12 @@
 # dsh-memo-plus
 
-> DeepSeek Harness 备忘录插件的自用 fork：[`@adamcjm/dsh-memo@0.2.11`](https://github.com/adamcjm/dsh-memo) · MIT
-> **包名与面板 id 保持 `@adamcjm/dsh-memo` / `memo` 不变** —— 它是 drop-in 替换，不是另一个插件。
+> DeepSeek Harness 备忘录插件的独立 fork：[`@adamcjm/dsh-memo@0.2.11`](https://github.com/adamcjm/dsh-memo) · MIT
+> 包名 `dsh-memo-plus`，面板 id 仍是 `memo`。
+
+```bash
+npm i -g dsh   # 或已装 DSH 时直接下一步
+dsh plugin --profile web add dsh-memo-plus
+```
 
 上游 0.2.11 是个称职的随手记，但对手机和长文不友好。这个 fork 只做三件事：**把 Markdown 渲染出来、把屏幕还给人、让手指能滚动**，再补一个「笔记本」区放长文档。
 
@@ -84,25 +89,42 @@ fallbackTolerance: 4,
 
 ## 安装
 
-**A. link 到本目录（改代码即时生效，推荐自用）**
+**A. 从 npm 安装（推荐）**
 
-```powershell
+```bash
+dsh plugin --profile web add dsh-memo-plus
+```
+
+装完重启一次 DSH Web（host 半侧在进程启动时加载），然后刷新浏览器。
+
+**B. link 到本目录（改代码即时生效，自用调试）**
+
+```bash
 git clone https://github.com/ymf2317-tech/dsh-memo-plus.git
 ```
 
 然后在你的 DSH profile（`~/.dsh/profiles/<profile>`）里：
 
-1. `package.json` 的 `dependencies` 加一条：`"@adamcjm/dsh-memo": "link:<绝对路径>/dsh-memo-plus"`
-2. 让 `<profile>/node_modules/@adamcjm/dsh-memo` 指向该目录（Windows 用 `New-Item -ItemType Junction`，其他平台用 `ln -s`）
-3. 重启 DSH Web
+1. `package.json` 的 `dependencies` 加一条：`"dsh-memo-plus": "link:<绝对路径>/dsh-memo-plus"`
+2. 让 `<profile>/node_modules/dsh-memo-plus` 指向该目录（Windows 用 `New-Item -ItemType Junction`，其他平台用 `ln -s`）
+3. `dsh.profile.bundles` 数组里加 `"dsh-memo-plus"`
+4. 重启 DSH Web
 
-**B. 覆盖上游目录（不想多一个目录时）**
+**C. 覆盖已安装目录**
 
-把本仓库的 `lib/`、`cordis.patch.yml`、`package.json` 覆盖进已安装的 `node_modules/@adamcjm/dsh-memo`。因为包名与面板 id 都保持不变，DSH 不会把它当成新插件，也不会新建数据目录。
+把本仓库的 `lib/`、`cordis.patch.yml`、`package.json` 覆盖进已安装的 `node_modules/dsh-memo-plus`。
 
 改 `lib/client.js` 后刷新浏览器即生效；改 `lib/index.js`（host 半侧，含 `/memo/vendor/marked.js` 路由）必须重启 DSH Web。
 
-> **包名仍叫 `@adamcjm/dsh-memo` 是刻意的**：DSH 的 bundle patch 与面板 key 都按包名解析，改名等于多出一个面板和一整套数据。代价是这个 fork **不能直接 `npm publish`**（那是别人的 scope）；将来要发 npm，包名得改成 `dsh-memo-plus`，并同步 `package.json` 与 `cordis.patch.yml` 里的 `name`。
+### 从 `@adamcjm/dsh-memo` 迁过来要注意
+
+这个 fork 早期沿用上游包名 `@adamcjm/dsh-memo` 做 drop-in 替换，**0.3.3 起改名为 `dsh-memo-plus`**（上游 scope 不归本人，无法 `npm publish`）。
+
+改名后它是一个**独立插件**：
+
+- 面板 id 仍是 `memo`，界面没变；
+- 数据目录默认仍是 `~/.dsh/memo`，**已有备忘不会丢**；
+- 但 profile 里别同时装两个（`@adamcjm/dsh-memo` 与 `dsh-memo-plus` 会抢同一个 `memo` 面板 id）。迁移时先把旧的删掉。
 
 ## 回滚
 

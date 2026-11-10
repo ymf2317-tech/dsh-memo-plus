@@ -47,3 +47,15 @@
 
 - [`@adamcjm/dsh-memo`](https://github.com/adamcjm/dsh-memo)（MIT）—— 数据模型、SQLite + `notes/*.md` 双写、
   GitHub 同步、附件处理、tag 与搜索都来自上游。
+
+## 0.3.3-ymfd.4（改名版：dsh-memo-plus）
+
+**包名从 `@adamcjm/dsh-memo` 改为 `dsh-memo-plus`。** 原因是上游 scope 不归本人所有，沿用上游包名无法 `npm publish`（registry 返回 `E404 Not Found - PUT`）。同时发布到 npm，因此有了真正的「一行安装」。
+
+- 面板 id 仍是 `memo`，数据目录默认仍是 `~/.dsh/memo`，**已有备忘不受影响**。
+- `cordis.patch.yml` 的 patch 条目名同步改为 `dsh-memo-plus`（否则宿主找不到 entry）。
+- `lib/client.js` 的模块 id、`lib/index.js` 的 route-disposers Symbol 同步改名。
+- 与旧包同时安装会抢同一个 `memo` 面板 id，迁移时先删旧的。
+
+功能层面与上一版（0.3.3-ymfd.4 未改名版）一致：紧凑模式 + 手机底部输入条。
+
