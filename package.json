@@ -1,7 +1,7 @@
 {
   "name": "dsh-memo-plus",
-  "version": "0.3.3-ymfd.4",
-  "description": "DSH memo plugin: Markdown rendering, a notebook tab for long-form notes, long-text folding and touch-friendly memo list. Independent fork of @adamcjm/dsh-memo.",
+  "version": "0.4.0-ymfd.14",
+  "description": "DSH memo plugin: 知识库（检索/备忘/笔记三页签，marked 渲染）、memo list, notebook tab, long-text folding and touch-friendly UI. Independent fork of @adamcjm/dsh-memo.",
   "author": "adamcjm (upstream) / ymf2317-tech (fork)",
   "license": "MIT",
   "type": "module",
